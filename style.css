@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    box-sizing: border-box;
+    font-family: "Commissioner", sans-serif;  
+}
+
+.container {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.img-desktop{
+    position: absolute;
+    padding-left: -10px;
+    padding-right: -10px;
+    top: 0;
+    z-index: -1;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    
+}
+
+.buttons a {
+    text-decoration: none;
+    color: white;
+}
