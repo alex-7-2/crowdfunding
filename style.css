@@ -11,7 +11,6 @@ body {
 
 header {
   display: flex;
-  justify-content: center;
 }
 
 .header-background {
@@ -30,40 +29,25 @@ header {
 .header-container {
   flex: 0 1 100%;
   display: flex;
-  padding: 50px 60px;
   z-index: 1;
 }
 
 .header-content {
   flex: 0 1 100%;
-  min-width: 650px;
+  padding: 45px 7.5%;
+  display: flex;
+}
+
+.header-content-inner {
+  flex: 0 1 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-/* .container {
-    max-width: 1440px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.img-desktop{
-    position: absolute;
-    padding-left: -10px;
-    padding-right: -10px;
-    top: 0;
-    z-index: -1;
-}
-
-.navigation {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    
-}
-
 .buttons a {
     text-decoration: none;
     color: white;
-} */
+    font-weight: 500;
+    padding: 0 25px;
+}
