@@ -1,14 +1,48 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
 }
 
 html,
 body {
-    box-sizing: border-box;
-    font-family: "Commissioner", sans-serif;  
+  box-sizing: border-box;
+  font-family: "Commissioner", sans-serif;
 }
 
-.container {
+header {
+  display: flex;
+  justify-content: center;
+}
+
+.header-background {
+  flex: 0 1 100%;
+  height: 400px;
+  background-image: url("img/image-hero-desktop.jpg");
+  background-position: center center;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0px 0px 15rem rgb(0, 0, 0) inset;
+}
+
+.header-container {
+  flex: 0 1 100%;
+  display: flex;
+  padding: 50px 60px;
+  z-index: 1;
+}
+
+.header-content {
+  flex: 0 1 100%;
+  min-width: 650px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* .container {
     max-width: 1440px;
     margin-left: auto;
     margin-right: auto;
@@ -32,4 +66,4 @@ body {
 .buttons a {
     text-decoration: none;
     color: white;
-}
+} */
