@@ -7,6 +7,7 @@ html,
 body {
   font-family: "Commissioner", sans-serif;
   font-size: 16px;
+  scrollbar-width: none;
 }
 
 button {
@@ -15,6 +16,16 @@ button {
   color: white;
   border: none;
   cursor: pointer;
+  transform: scale(1);
+  transition: background-color 0.15s ease-in-out, transform 0.25s ease-in-out;
+}
+
+button:hover {
+  background-color: hsl(176, 72%, 28%);
+}
+
+button:active {
+  transform: scale(0.95);
 }
 
 /* Main */
@@ -34,25 +45,6 @@ main {
   margin: -100px auto 75px;
 }
 
-/* .selection-modal {
-  display: flex;
-  background-color: hsla(0, 0%, 0%, 0.25);
-  width: 100%;
-  height: 100vh; 
-  position: absolute;
-  top: 0;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.5s;
-}
-
-.selection-modal.active {
-  opacity: 1;
-  z-index: 2;
-  cursor: pointer;
-  pointer-events: all;
-} */
-
 .block-hero {
   display: flex;
   flex-direction: column;
@@ -71,7 +63,7 @@ main {
 }
 
 .block-hero h1 {
-  font-size: 24px;
+  font-size: 26px;
   margin-top: 10px;
 }
 
@@ -93,16 +85,6 @@ main {
   padding: 20px 40px;
   height: 56px;
   border-radius: 40px;
-  transform: scale(1);
-  transition: background-color 0.15s ease-in-out, transform 0.25s ease-in-out;
-}
-
-.buttons-box button:hover {
-  background-color: hsl(176, 72%, 28%);
-}
-
-.buttons-box button:active {
-  transform: scale(0.95);
 }
 
 .bookmark-button {
@@ -299,4 +281,241 @@ main {
 
 .select-reward p {
   color: hsl(0, 0%, 48%);
+}
+
+.modal-background {
+  background-color: hsla(0, 0%, 0%, 0.25);
+  width: 100%;
+  height: 100%; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.modal-background.active {
+  opacity: 1;
+  z-index: 2;
+  pointer-events: all;
+}
+
+.selection-modal {
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+  max-height: 100%;
+  height: 80%;
+  position: fixed;
+  top: 10%;
+  padding: 50px 35px;
+  border-radius: 10px;
+  box-shadow: 0 0 50px hsla(0, 0%, 0%, 0.5);
+  background-color: white;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.selection-modal.active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 3;
+  pointer-events: all;
+}
+
+.selection-modal svg {
+  position: absolute;
+  top: 35px;
+  right: 35px;
+  cursor: pointer;
+}
+
+.selection-modal path:hover {
+  opacity: 0.7;
+}
+
+.modal-intro h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.modal-intro p {
+  color: hsl(0, 0%, 48%);
+  line-height: 2;
+  margin-bottom: 25px;
+}
+
+.pledge-options {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.option {
+  padding: 30px 15px;
+  border: 1px solid hsl(0, 0%, 85%);
+  border-radius: 10px;
+}
+
+.option-title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.option-title p {
+  color: hsl(176, 50%, 47%);
+  font-weight: 500;
+}
+
+.option-title div {
+  position: absolute;
+  right: 60px;
+}
+
+.option-title div > p {
+  color: hsl(0, 0%, 48%);
+  font-weight: 400;
+}
+
+.option-title div > p > span {
+  font-size: 20px;
+  font-weight: 700;
+  color: black;
+  margin-right: 5px;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+label h3 {
+  font-size: 16px;
+  margin-left: 10px;
+  margin-right: 15px;
+}
+
+label::before {
+  content: "";
+  height: 20px;
+  width: 20px;
+  border: 1px solid hsl(0, 0%, 90%);
+  background-color: white;
+  border-radius: 50%;
+  transition: border 0.15s;
+}
+
+label::after {
+  content: "";
+  height: 12px;
+  width: 12px;
+  border: 1px solid hsl(176, 50%, 47%);
+  background-color: hsl(176, 50%, 47%);
+  border-radius: 50%;
+  position: absolute;
+  left: 55px;
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+}
+
+label:hover {
+  color: hsl(176, 50%, 47%);
+}
+
+input[type="radio"]:hover + label::before {
+  border-color: hsl(176, 50%, 47%);
+}
+
+input[type="radio"]:checked + label::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.option-descr {
+  margin-left: 30px;
+}
+
+.option-descr p {
+  color: hsl(0, 0%, 48%);
+  line-height: 2;
+  margin-top: 15px;
+}
+
+.pledge-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-top: 1px solid hsl(0, 0%, 85%);
+  margin-top: 30px;
+  padding-top: 20px;
+}
+
+.pledge-box p {
+  color: hsl(0, 0%, 48%);
+  margin-left: 30px;
+}
+
+.pledge {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.pledge div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  height: 52px;
+  border: 1px solid hsl(0, 0%, 85%);
+  border-radius: 52px;
+}
+
+.pledge div > span {
+  font-weight: 500;
+  color: hsl(0, 0%, 48%);
+}
+
+input[type="number"] {
+  border: none;
+  font: 500 16px/1 "Commissioner", sans-serif; 
+  color: black;
+  width: 100px;
+  outline: none;
+  margin-left: 5px;
+  -moz-appearance: textfield;
+}
+
+input[type="number"]::placeholder {
+  color: hsl(0, 0%, 48%);
+  font: 500 16px/1 "Commissioner", sans-serif; 
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+/* .pledge div:active {
+  border-color: hsl(176, 50%, 47%);
+} */
+
+.pledge button {
+  padding: 18px 30px;
+  border-radius: 30px;
 }
