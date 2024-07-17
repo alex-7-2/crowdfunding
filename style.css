@@ -8,8 +8,8 @@ body {
   font-family: "Commissioner", sans-serif;
 }
 
-/* Header */
 
+/* Header */
 header {
   height: 400px;
   background-image: url("img/image-hero-desktop.jpg");
@@ -34,6 +34,8 @@ header {
   align-items: center;
 }
 
+
+/* Desktop Nav */
 .desktop-nav {
   margin: 0 25px;
   display: flex;
@@ -52,6 +54,8 @@ header {
   color: hsl(176, 50%, 47%);
 }
 
+
+/* Mobile Nav*/
 .logo,
 .toggle,
 .mobile-nav a {
@@ -64,7 +68,7 @@ header {
 }
 
 .toggle-buttons,
-.mobile-nav-layout {
+.mobile-nav-background {
   display: none;
 }
 
@@ -88,7 +92,7 @@ header {
   z-index: 2;
 }
 
-.mobile-layout-mode {
+.mobile-nav-background {
   pointer-events: none;
   position: absolute;
   top: 0;
@@ -100,7 +104,7 @@ header {
   background-color: hsla(0, 0%, 0%, 0.25);
 }
 
-.mobile-layout-mode.active {
+.mobile-nav-background.active {
   opacity: 1;
   pointer-events: all;
 }
@@ -155,7 +159,9 @@ header {
   color: hsl(176, 50%, 47%);
 }
 
+
 @media (max-width: 767px) {
+
   /* Header */
   header {
     background-image: url("img/image-hero-mobile.jpg");
@@ -164,10 +170,12 @@ header {
     box-shadow: 0 0 240px hsla(0, 0%, 0%, 0.5) inset;
   }
 
+  /* Desktop Nav */
   .desktop-nav {
     display: none;
   }
 
+  /* Mobile Nav*/
   .toggle-buttons {
     display: block;
   }
