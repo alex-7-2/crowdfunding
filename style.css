@@ -6,6 +6,40 @@
 html,
 body {
   font-family: "Commissioner", sans-serif;
+  font-size: 16px;
+  scroll-behavior: smooth;
+  overflow: auto;
+}
+
+body::-webkit-scrollbar {
+  width: 5px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: hsl(0, 0%, 65%);
+  border-radius: 2.5px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(0, 0%, 48%);
+}
+
+button {
+  font: 500 16px/1 "Commissioner", sans-serif;
+  background-color: hsl(176, 50%, 47%);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transform: scale(1);
+  transition: background-color 0.15s ease-in-out, transform 0.25s ease-in-out;
+}
+
+button:hover {
+  background-color: hsl(176, 72%, 28%);
+}
+
+button:active {
+  transform: scale(0.95);
 }
 
 
@@ -64,15 +98,11 @@ header {
 
 .logo {
   position: relative;
-  z-index: 1;
-}
-
-.toggle-buttons,
-.mobile-nav-background {
-  display: none;
+  z-index: 3;
 }
 
 .toggle-buttons {
+  display: none;
   position: relative;
 }
 
@@ -89,7 +119,7 @@ header {
   position: relative;
   pointer-events: all;
   transform: scale(1);
-  z-index: 2;
+  z-index: 3;
 }
 
 .mobile-nav-background {
@@ -100,8 +130,9 @@ header {
   width: 100%;
   height: 100vh;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.75s ease-in-out;
   background-color: hsla(0, 0%, 0%, 0.25);
+  z-index: 2;
 }
 
 .mobile-nav-background.active {
@@ -121,10 +152,11 @@ header {
   border-radius: 15px;
   background-color: transparent;
   max-height: 0;
-  transition: max-height 0.5s ease-out, background-color 0.5s ease-out;
+  transition: max-height 0.5s ease-in-out, background-color 0.5s ease-in-out;
   box-shadow: 0 0 50px hsla(0, 0%, 0%, 0.5);
   overflow: hidden;
   pointer-events: none;
+  z-index: 2;
 }
 
 .mobile-nav a {
@@ -160,6 +192,632 @@ header {
 }
 
 
+/* Main */
+main {
+  background-color: hsl(0, 0%, 95%);
+  display: flex;
+  justify-content: center;
+  margin-top: 400px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 700px;
+  margin: -100px auto 75px;
+}
+
+
+/* Hero Section */
+.block-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  border: 1px solid hsl(0, 0%, 90%);
+  border-radius: 10px;
+  background-color: white;
+  padding: 50px;
+  position: relative;
+}
+
+.logo-M {
+  position: absolute;
+  top: -28px;
+}
+
+.block-hero h1 {
+  font-size: 26px;
+  margin-top: 10px;
+}
+
+.block-hero p {
+  line-height: 1.5;
+  margin: 15px 0 35px;
+  color: hsl(0, 0%, 48%);
+}
+
+.buttons-box {
+  flex: 0 1 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttons-box button {
+  padding: 20px 40px;
+  height: 56px;
+  border-radius: 40px;
+}
+
+.bookmark-button {
+  display: flex;
+  align-items: center;
+  width: 180px;
+  height: 56px;
+  background-color: hsl(0, 0%, 95%);
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.bookmark-button path {
+  fill: white;
+}
+
+.bookmark-button circle {
+  fill: black;
+  transition: fill 0.15s ease-in-out;
+}
+
+.bookmark-button:hover circle {
+  fill: hsl(0, 0%, 25%);
+}
+
+.bookmark-button p {
+  font-weight: 500;
+  width: 124px;
+  margin: 0;
+  color: hsl(0, 0%, 48%);
+  text-align: center;
+  transition: color 0.15s ease-in-out;
+  transform: translateX(0);
+}
+
+.bookmark-button:hover p {
+  color: hsl(0, 0%, 65%);
+}
+
+.bookmark-button svg {
+  transform: translateX(0);
+  z-index: 1;
+}
+
+.bookmark-button svg,
+.bookmark-button p {
+  transition: transform 0.75s;
+}
+
+.bookmark-button.active circle {
+  fill: hsl(176, 50%, 47%);
+}
+
+.bookmark-button.active svg {
+  transform: translateX(124px);
+}
+
+.bookmark-button.active p {
+  transform: translateX(-56px);
+  color: hsl(176, 50%, 47%);
+}
+
+.bookmark-button.active:hover circle,
+.bookmark-button.active:hover p {
+  fill: hsl(176, 72%, 28%);
+  color: hsl(176, 72%, 28%);
+}
+
+
+/* Stats Section */
+.stats,
+.about {
+  display: flex;
+  flex-direction: column;
+  padding: 50px 35px;
+  width: 100%;
+  border: 1px solid hsl(0, 0%, 90%);
+  border-radius: 10px;
+  background-color: white;
+}
+
+.stats-text-content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 28px;
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+.stats-text-content.inactive {
+  opacity: 0;
+}
+
+.stats-text-content h2 {
+  font-size: 36px;
+}
+
+.stats-text-content p {
+  line-height: 2;
+  color: hsl(0, 0%, 48%);
+}
+
+.total-backed,
+.total-pledges,
+.days-left {
+  width: 100%;
+}
+
+.total-pledges {
+  padding: 0 40px;
+  margin: 0 40px;
+  border-left: 1px solid hsl(0, 0%, 90%);
+  border-right: 1px solid hsl(0, 0%, 90%);
+}
+
+.stats-meter {
+  width: 100%;
+  height: 15px;
+  margin-top: 28px;
+  background-color: hsl(0, 0%, 90%);
+  border-radius: 15px;
+}
+
+.stats-meter div {
+  max-width: 100%;
+  height: 15px;
+  background-color: hsl(176, 50%, 47%);
+  border-radius: 15px;
+  width: 0;
+  opacity: 0;
+  transition: width 1.75s, opacity 0.25s;
+}
+
+.stats-meter div.start {
+  width: 63.75%;
+  opacity: 1;
+}
+
+
+/* About Section */
+.about {
+  gap: 35px;
+}
+
+.project-intro h2 {
+  font-size: 20px;
+  margin-bottom: 24px;
+}
+
+.project-intro p {
+  color: hsl(0, 0%, 48%);
+  line-height: 2;
+  margin-top: 16px;
+}
+
+.pledge-rewards {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+.reward {
+  width: 100%;
+  border: 1px solid hsl(0, 0%, 90%);
+  border-radius: 10px;
+  padding: 35px 25px;
+}
+
+.reward.inactive {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.reward-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reward-title h3 {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.reward-title p {
+  margin-bottom: 30px;
+  color: hsl(176, 50%, 47%);
+  font-weight: 500;
+}
+
+.reward-descr {
+  line-height: 2;
+  color: hsl(0, 0%, 48%);
+  margin-bottom: 20px;
+}
+
+.select-reward {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.select-reward button {
+  padding: 18px 35px;
+  border-radius: 35px;
+}
+
+.select-reward p > span {
+  font-size: 30px;
+  font-weight: 700;
+  margin-right: 5px;
+  color: black;
+}
+
+.select-reward p {
+  color: hsl(0, 0%, 48%);
+}
+
+
+/* Selection Modal */
+.modal-background {
+  background-color: hsla(0, 0%, 0%, 0.25);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.modal-background.active {
+  opacity: 1;
+  z-index: 2;
+  pointer-events: all;
+}
+
+.modal-background.inactive {
+  pointer-events: none;
+}
+
+.selection-modal {
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+  max-height: 100%;
+  height: 80%;
+  position: fixed;
+  top: 10%;
+  padding: 50px 35px;
+  border-radius: 10px;
+  box-shadow: 0 0 50px hsla(0, 0%, 0%, 0.5);
+  background-color: white;
+  overflow: auto;
+  pointer-events: none;
+  scrollbar-width: none;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.selection-modal.active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 3;
+  pointer-events: all;
+}
+
+.selection-modal.inactive {
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.selection-modal svg {
+  position: absolute;
+  top: 35px;
+  right: 35px;
+  cursor: pointer;
+}
+
+.selection-modal path:hover {
+  opacity: 0.7;
+}
+
+.modal-intro h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.modal-intro p {
+  color: hsl(0, 0%, 48%);
+  line-height: 2;
+  margin-bottom: 25px;
+}
+
+.pledge-options {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.option {
+  padding: 30px 15px;
+  border: 1px solid hsl(0, 0%, 85%);
+  border-radius: 10px;
+  transition: border 0.25s;
+}
+
+.option.active {
+  border-color: hsl(176, 50%, 47%);
+  scroll-margin-top: 25px;
+}
+
+.option.inactive {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.option-title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+label h3 {
+  font-size: 16px;
+  margin-left: 10px;
+  margin-right: 15px;
+}
+
+label::before {
+  content: "";
+  height: 18px;
+  width: 18px;
+  border: 1px solid hsl(0, 0%, 90%);
+  background-color: white;
+  border-radius: 50%;
+  transition: border 0.15s;
+}
+
+label::after {
+  content: "";
+  height: 12px;
+  width: 12px;
+  border: 1px solid hsl(176, 50%, 47%);
+  background-color: hsl(176, 50%, 47%);
+  border-radius: 50%;
+  position: absolute;
+  left: 54px;
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+}
+
+label:hover {
+  color: hsl(176, 50%, 47%);
+}
+
+input[type="radio"]:hover + label::before {
+  border-color: hsl(176, 50%, 47%);
+}
+
+input[type="radio"]:checked + label::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.option-title p {
+  color: hsl(176, 50%, 47%);
+  font-weight: 500;
+}
+
+.option-title div {
+  position: absolute;
+  right: 60px;
+}
+
+.option-title div > p {
+  color: hsl(0, 0%, 48%);
+  font-weight: 400;
+}
+
+.option-title div > p > span {
+  font-size: 20px;
+  font-weight: 700;
+  color: black;
+  margin-right: 5px;
+}
+
+.option-descr {
+  margin-left: 30px;
+}
+
+.option-descr p {
+  color: hsl(0, 0%, 48%);
+  line-height: 2;
+  margin-top: 15px;
+  margin-bottom: 0;
+  transition: margin-bottom 0.25s;
+}
+
+.option.active .option-descr p {
+  margin-bottom: 30px;
+}
+
+.mobile-stock {
+  display: none;
+}
+
+.option .pledge-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  border-top: 1px solid hsl(0, 0%, 85%);
+  height: 0;
+  opacity: 0;
+  overflow-y: hidden;
+  transition: height 0.5s, opacity 0.5s;
+}
+
+.option.active .pledge-box {
+  height: 100px;
+  opacity: 1;
+}
+
+.pledge-box p {
+  color: hsl(0, 0%, 48%);
+  line-height: 2;
+  margin: 25px 30px 0;
+}
+
+.pledge {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.pledge div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  height: 52px;
+  border: 1px solid hsl(0, 0%, 85%);
+  border-radius: 52px;
+}
+
+.pledge div.error {
+  border-color: red;
+}
+
+.pledge div > span {
+  font-weight: 500;
+  color: hsl(0, 0%, 48%);
+}
+
+input[type="number"] {
+  border: none;
+  font: 500 16px/1 "Commissioner", sans-serif;
+  color: black;
+  width: 100px;
+  outline: none;
+  margin-left: 5px;
+  -moz-appearance: textfield;
+}
+
+input[type="number"]::placeholder {
+  color: hsl(0, 0%, 48%);
+  font: 500 16px/1 "Commissioner", sans-serif;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.pledge button {
+  padding: 18px 30px;
+  border-radius: 30px;
+}
+
+.invalid-pledge {
+  width: 100%;
+  height: 0;
+  margin-right: 160px;
+  color: red;
+  font-size: 12px;
+  text-align: end;
+  margin-top: 0;
+  opacity: 0;
+  transition: opacity 0.25s, margin-top 0.25s, height 0.25s;
+}
+
+.invalid-pledge.active {
+  opacity: 1;
+  margin-top: 8px;
+  height: 22px;
+}
+
+
+/* Success Modal */
+.success-modal {
+  width: 500px;
+  height: 420px;
+  position: fixed;
+  top: 20%;
+  padding: 60px 30px 50px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 50px hsla(0, 0%, 0%, 0.5);
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.success-modal.active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 3;
+  pointer-events: all;
+}
+
+.success-modal-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+}
+
+.success-modal-inner h2 {
+  font-size: 24px;
+  margin-top: 25px;
+}
+
+.success-modal-inner p {
+  color: hsl(0, 0%, 48%);
+  line-height: 2;
+  margin: 15px 0 35px;
+}
+
+.success-modal-inner button {
+  padding: 15px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+
 @media (max-width: 767px) {
 
   /* Header */
@@ -178,5 +836,234 @@ header {
   /* Mobile Nav*/
   .toggle-buttons {
     display: block;
+  }
+
+
+  /* Main */
+  .container {
+    width: 87%;
+    margin-bottom: 35px;
+  }
+
+  /* Hero Section */
+  .block-hero {
+    padding: 25px;
+    text-align: center;
+  }
+
+  .block-hero h1 {
+    font-size: 22px;
+    margin: 30px 20px 0;
+  }
+
+  .buttons-box button {
+    width: calc(100% - 56px);
+    margin-right: 10px;
+  }
+
+  .bookmark-button {
+    width: 56px;
+  }
+
+  .bookmark-button p {
+    display: none;
+  }
+
+  .bookmark-button.active svg {
+    transform: translateX(0);
+  }
+
+  /* Stats Section */
+  .stats {
+    padding: 20px 25px 40px;
+  }
+
+  .stats-text-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  .stats-text-content h2 {
+    font-size: 32px;
+    margin-top: 15px;
+  }
+
+  .stats-text-content p {
+    margin-bottom: 15px;
+  }
+
+  .total-pledges {
+    padding: 0;
+    margin: 0;
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid hsl(0, 0%, 90%);
+    border-bottom: 1px solid hsl(0, 0%, 90%);
+  }
+
+  .total-backed,
+  .total-pledges,
+  .days-left {
+    width: 60%;
+  }
+
+  .stats-meter {
+    margin-top: 15px;
+  }
+
+  /* About Section */
+  .about {
+    padding: 40px 25px;
+  }
+
+  .project-intro h2 {
+    margin-bottom: 20px;
+  }
+
+  .pledge-rewards {
+    gap: 25px;
+  }
+
+  .reward-title {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .reward-title h3 {
+    margin-bottom: 0;
+  }
+
+  .reward-title p {
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+
+  .select-reward p > span {
+    font-size: 28px;
+  }
+
+  .select-reward button {
+    padding: 15px;
+    border-radius: 30px;
+  }
+
+  /* Selection Modal */
+  .selection-modal {
+    width: 87%;
+    padding: 40px 25px;
+  }
+
+  .selection-modal svg {
+    top: 25px;
+    right: 25px;
+  }
+
+  .option-title {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  label::after {
+    left: 44px;
+  }
+
+  .option-title p {
+    margin-left: 30px;
+    margin-top: 10px;
+  }
+
+  .option-title div {
+    display: none;
+  }
+
+  .option-descr p {
+    margin-bottom: 20px;
+  }
+
+  .option.active .option-descr p {
+    margin-bottom: 20px;
+  }
+
+  .mobile-stock {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 30px;
+    margin-bottom: 0;
+    transition: margin-bottom 0.25s;
+  }
+
+  .option.active .mobile-stock p {
+    margin-bottom: 15px;
+  }
+
+  .mobile-stock p {
+    color: hsl(0, 0%, 48%);
+    font-weight: 400;
+  }
+
+  .mobile-stock p > span {
+    font-size: 24px;
+    font-weight: 700;
+    color: black;
+    margin-right: 5px;
+  }
+
+  .option .pledge-box {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+  }
+
+  .option.active .pledge-box {
+    height: 135px;
+    overflow-x: hidden;
+  }
+
+  .pledge-box p {
+    margin: 20px 0;
+  }
+
+  .pledge {
+    gap: 10px;
+    margin-top: 0;
+  }
+
+  .pledge div {
+    width: 100px;
+    height: 40px;
+    border-radius: 40px;
+  }
+
+  .pledge div > span {
+    font-weight: 500;
+    color: hsl(0, 0%, 48%);
+  }
+
+  input[type="number"] {
+    width: 50px;
+  }
+
+  .pledge button {
+    padding: 12px 25px;
+    border-radius: 40px;
+  }
+
+  .invalid-pledge {
+    margin-right: 0;
+    text-align: center;
+  }
+
+  /* Success modal */
+  .success-modal {
+    width: 87%;
+    height: fit-content;
+    top: 10%;
+  }
+
+  .success-modal-inner h2 {
+    font-size: 22px;
   }
 }
