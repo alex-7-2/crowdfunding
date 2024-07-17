@@ -1,0 +1,182 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html,
+body {
+  font-family: "Commissioner", sans-serif;
+}
+
+
+/* Header */
+header {
+  height: 400px;
+  background-image: url("img/image-hero-desktop.jpg");
+  background-position: center center;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 240px black inset;
+}
+
+.header-container {
+  padding: 50px 7.5%;
+  display: flex;
+}
+
+.header-content {
+  flex: 0 1 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+/* Desktop Nav */
+.desktop-nav {
+  margin: 0 25px;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.desktop-nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.desktop-nav a:hover {
+  color: hsl(176, 50%, 47%);
+}
+
+
+/* Mobile Nav*/
+.logo,
+.toggle,
+.mobile-nav a {
+  cursor: pointer;
+}
+
+.logo {
+  position: relative;
+  z-index: 1;
+}
+
+.toggle-buttons,
+.mobile-nav-background {
+  display: none;
+}
+
+.toggle-buttons {
+  position: relative;
+}
+
+.toggle {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  pointer-events: none;
+  transform: scale(0);
+  transition: transform 0.5s ease;
+}
+
+.toggle.active {
+  position: relative;
+  pointer-events: all;
+  transform: scale(1);
+  z-index: 2;
+}
+
+.mobile-nav-background {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  background-color: hsla(0, 0%, 0%, 0.25);
+}
+
+.mobile-nav-background.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 130px;
+  left: 0.5%;
+  right: 0.5%;
+  margin: auto;
+  width: 90%;
+  border-radius: 15px;
+  background-color: transparent;
+  max-height: 0;
+  transition: max-height 0.5s ease-out, background-color 0.5s ease-out;
+  box-shadow: 0 0 50px hsla(0, 0%, 0%, 0.5);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.mobile-nav a {
+  color: black;
+  text-decoration: none;
+  padding: 25px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1;
+  width: 100%;
+  background-color: white;
+  transition: background-color 0.5s ease, color 0.25s ease;
+  pointer-events: all;
+}
+
+.mobile-nav a:first-child {
+  border-bottom: 1px solid hsl(0, 0%, 48%, 0.15);
+}
+
+.mobile-nav a:last-child {
+  border-top: 1px solid hsl(0, 0%, 48%, 0.15);
+}
+
+.mobile-nav.active {
+  background-color: white;
+  max-height: 220px;
+}
+
+.mobile-nav a:active,
+.mobile-nav a:focus {
+  background-color: hsl(0, 0%, 48%, 0.25);
+  color: hsl(176, 50%, 47%);
+}
+
+
+@media (max-width: 767px) {
+
+  /* Header */
+  header {
+    background-image: url("img/image-hero-mobile.jpg");
+    background-position: left top;
+    background-size: cover;
+    box-shadow: 0 0 240px hsla(0, 0%, 0%, 0.5) inset;
+  }
+
+  /* Desktop Nav */
+  .desktop-nav {
+    display: none;
+  }
+
+  /* Mobile Nav*/
+  .toggle-buttons {
+    display: block;
+  }
+}
