@@ -13,8 +13,12 @@
     />
   </head>
   <body>
+
+    <!-- Main -->
     <main>
       <div class="container">
+
+        <!-- Hero Section -->
         <section class="block-hero">
           <img src="/img/logo-mastercraft.svg" alt="logo-M" class="logo-M" />
           <h1>Mastercraft Bamboo Monitor Riser</h1>
@@ -34,12 +38,14 @@
               </svg>
               <p>Bookmark</p>
             </div>
-            <!-- bookmark-button -->
+            <!-- bookmark-button end -->
           </div>
-          <!-- buttons-box -->
+          <!-- buttons-box end -->
         </section>
-        <!-- block-hero -->
+        <!-- block-hero section end -->
 
+
+        <!-- Stats Section -->
         <section id="stats" class="stats">
           <div class="stats-text-content">
             <div class="total-backed">
@@ -55,15 +61,17 @@
               <p>days left</p>
             </div>
           </div>
-          <!-- stats-text-content -->
+          <!-- stats-text-content end -->
 
-          <div id="statsMeter" class="stats-meter">
-            <div></div>
+          <div class="stats-meter">
+            <div id="statsMeter"></div>
           </div>
-          <!-- stats-meter -->
+          <!-- stats-meter end -->
         </section>
-        <!-- stats -->
+        <!-- stats section end -->
 
+
+        <!-- About Section -->
         <section class="about">
           <div class="project-intro">
             <h2>About this project</h2>
@@ -80,10 +88,10 @@
               USB sticks to be stored under the stand.
             </p>
           </div>
-          <!-- project-intro -->
+          <!-- project-intro end -->
 
           <div class="pledge-rewards">
-            <div class="reward">
+            <div id="bamboo" class="reward">
               <div class="reward-title">
                 <h3>Bamboo Stand</h3>
                 <p>Pledge $25 or more</p>
@@ -100,9 +108,9 @@
                 <button data-id="bambooReward">Select Reward</button>
               </div>
             </div>
-            <!-- reward -->
+            <!-- reward end -->
 
-            <div class="reward">
+            <div id="black" class="reward">
               <div class="reward-title">
                 <h3>Black Edition Stand</h3>
                 <p>Pledge $75 or more</p>
@@ -119,9 +127,9 @@
                 <button data-id="blackReward">Select Reward</button>
               </div>
             </div>
-            <!-- reward -->
+            <!-- reward end -->
 
-            <div class="reward">
+            <div id="mahogany" class="reward">
               <div class="reward-title">
                 <h3>Mahogany Special Edition</h3>
                 <p>Pledge $200 or more</p>
@@ -138,17 +146,21 @@
                 <button data-id="mahoganyReward">Select Reward</button>
               </div>
             </div>
-            <!-- reward -->
+            <!-- reward end -->
           </div>
-          <!-- pledge-rewards -->
+          <!-- pledge-rewards end -->
         </section>
-        <!-- about -->
+        <!-- about section end -->
       </div>
-      <!-- container -->
+      <!-- container end -->
 
+
+      <!-- Modal Backgorund -->
       <div id="modalBackground" class="modal-background"></div>
-      <!-- modal-background -->
+      <!-- modal-background end -->
 
+
+      <!-- Selection Modal -->
       <div id="selectionModal" class="selection-modal">
         <svg
           id="closeModal"
@@ -170,6 +182,7 @@
             in the world?
           </p>
         </div>
+        <!-- modal-intro end -->
 
         <form action="" class="pledge-options" novalidate>
           <div class="option">
@@ -205,10 +218,11 @@
                 Please enter a valid pledge
               </div>
             </div>
+            <!-- pledge-box end -->
           </div>
-          <!-- option -->
+          <!-- option end -->
 
-          <div id="bamboo" class="option">
+          <div class="option">
             <div class="option-title">
               <input type="radio" name="option" id="bambooReward" />
               <label for="bambooReward">
@@ -225,6 +239,9 @@
                 us launch our promotional campaign, and you'll be added to a
                 special Backer member list.
               </p>
+            </div>
+            <div class="mobile-stock">
+              <p id="bambooStockMobile"><span>101</span>left</p>
             </div>
             <div class="pledge-box">
               <p>Enter your pledge</p>
@@ -245,10 +262,11 @@
                 Please enter a valid pledge
               </div>
             </div>
+            <!-- pledge-box end -->
           </div>
-          <!-- option -->
+          <!-- option end -->
 
-          <div id="black" class="option">
+          <div class="option">
             <div class="option-title">
               <input type="radio" name="option" id="blackReward" />
               <label for="blackReward">
@@ -265,6 +283,9 @@
                 thank you. You'll be added to our Backer member list. Shipping
                 is included.
               </p>
+            </div>
+            <div class="mobile-stock">
+              <p id="blackStockMobile"><span>64</span>left</p>
             </div>
             <div class="pledge-box">
               <p>Enter your pledge</p>
@@ -285,10 +306,11 @@
                 Please enter a valid pledge
               </div>
             </div>
+            <!-- pledge-box end -->
           </div>
-          <!-- option -->
+          <!-- option end -->
 
-          <div id="mahogany" class="option">
+          <div class="option">
             <div class="option-title">
               <input type="radio" name="option" id="mahoganyReward" />
               <label for="mahoganyReward">
@@ -305,6 +327,9 @@
                 and a personal thank you. You'll be added to our Backer member
                 list. Shipping is included.
               </p>
+            </div>
+            <div class="mobile-stock">
+              <p id="mahoganyStockMobile"><span>1</span>left</p>
             </div>
             <div class="pledge-box">
               <p>Enter your pledge</p>
@@ -325,13 +350,16 @@
                 Please enter a valid pledge
               </div>
             </div>
+            <!-- pledge-box end -->
           </div>
-          <!-- option -->
+          <!-- option end -->
         </form>
-        <!-- pledge-options -->
+        <!-- pledge-options form end -->
       </div>
-      <!-- selection-modal -->
+      <!-- selection-modal end -->
 
+
+      <!-- Success Modal -->
       <div id="successModal" class="success-modal">
         <div class="success-modal-inner">
           <img src="/img/icon-check.svg" alt="icon-check" />
@@ -343,9 +371,9 @@
           </p>
           <button id="successBtn">Got it!</button>
         </div>
-        <!-- success-modal-inner -->
+        <!-- success-modal-inner end -->
       </div>
-      <!-- success-modal -->
+      <!-- success-modal end -->
     </main>
   </body>
   <script src="app.js"></script>

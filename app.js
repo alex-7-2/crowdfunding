@@ -2,6 +2,9 @@ const backProject = document.getElementById("supportProject");
 const bookmarkButton = document.getElementById("bookmarkButton");
 const bookmarkText = document.querySelector("#bookmarkButton p");
 const statsSection = document.getElementById("stats");
+const statsText = document.querySelector(".stats-text-content");
+const totalAmount = document.querySelector("#totalBacked span");
+const totalPledges = document.getElementById("totalPledges");
 const statsMeter = document.getElementById("statsMeter");
 const selectButtons = document.querySelectorAll(".select-reward button");
 const modalBackground = document.getElementById("modalBackground");
@@ -16,6 +19,7 @@ const errorMsgs = document.querySelectorAll(".invalid-pledge");
 const successModal = document.getElementById("successModal");
 const successButton = document.getElementById("successBtn");
 
+let pledge = null;
 
 document.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
@@ -23,10 +27,12 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+
 /* Start Meter (display fundraising progress) */
 
 const displayMeter = () => statsMeter.classList.add("start");
 window.onload = displayMeter;
+
 
 /* Manage Modal State */
 
@@ -52,14 +58,11 @@ const closeModalOverlay = () => {
   modalBackground.classList.remove("inactive");
   selectionModal.classList.remove("inactive");
 
-  const currentRadio = document.querySelector(
-    ".option.active .option-title input"
-  );
-  currentRadio.checked = null;
+  const currentRadio = document.querySelector(".option.active .option-title input");
+  currentRadio.checked = false;
 
   setTimeout(() => {
     pledgeOptions.forEach((option) => option.classList.remove("active"));
-    statsMeter.classList.add("start");
     clearOptions();
   }, 500);
 };
@@ -67,26 +70,23 @@ const closeModalOverlay = () => {
 modalBackground.addEventListener("click", closeModalOverlay);
 closeModal.addEventListener("click", closeModalOverlay);
 
+
 /* Manage Options State */
 
 const clearOptions = () => {
-  // pledgeOptions.forEach((option) => option.classList.remove("active"));
-  pledge = null;
   errorMsgs.forEach((msg) => msg.classList.remove("active"));
   pledgeWrappers.forEach((wrapper) => wrapper.classList.remove("error"));
   pledgeInputs.forEach((input) => (input.value = ""));
+  pledge = null;
 };
 
-function selectOption(radio) {
+const selectOption = (radio) => {
   const currentOption = radio.parentNode.parentNode;
   currentOption.classList.add("active");
 
-  setTimeout(() => {
-    currentOption.scrollIntoView({
-      behavior: "smooth",
-    });
-  }, 500);
-}
+  setTimeout(() => currentOption.scrollIntoView({ behavior: "smooth" }), 500);
+};
+
 
 /* Select Reward */
 
@@ -98,6 +98,7 @@ selectButtons.forEach((button) => {
     label.click();
   });
 });
+
 
 /* Support Project/Bookmark Page */
 
@@ -116,50 +117,56 @@ bookmarkButton.addEventListener("click", (e) => {
   }
 });
 
-/* Update Stock */
 
-function updateStock(currentName) {
-  console.log(`This is currentName: ${currentName}`);
-  if (currentName !== "noReward") {
-    const currentStock = document.querySelectorAll(`#${currentName}Stock span`);
-    currentStock.forEach((el) => {
-      el.innerHTML = parseInt(el.innerHTML) - 1;
-    });
-  }
-}
-
-/* Confirm Pledge */
-
-let pledge = null;
+/* Validate Pledge, Update Stock, Confirm Pledge and Update Stats */
 
 pledgeInputs.forEach((input) => {
-  // input.addEventListener("keydown", (e) => {
-  //   if (e.key === "Enter") {
-  //     e.preventDefault();
-  //   }
-  // });
   input.addEventListener("change", (e) => {
     pledge = parseInt(e.target.value);
-    console.log(`Pledge in input: ${pledge}`);
   });
 });
 
 submitButtons.forEach((button) => {
   button.addEventListener("click", (e) => {
     e.preventDefault();
-    confirmPledge(button);
+    validatePledge(button);
   });
 });
 
-function confirmPledge(button) {
-  const currentId = button.getAttribute("data-id");
-  const currentName = button.getAttribute("data-name");
-  const currentInput = document.getElementById(currentId);
-  const minPledge = parseInt(currentInput.getAttribute("min"));
-  const errorMsg = document.querySelector(`div[data-id="${currentId}"]`);
+/* Update Stock */
 
-  // console.log(`Pledge in confirmation: ${pledge}`);
-  console.log(`This is currentOption: ${currentName}`);
+function updateStock(stockName, currentReward, currentOption, rewardButton) {
+  if (stockName !== "noReward") {
+    const stockDesktop = document.querySelectorAll(`#${stockName}Stock span`);
+    const stockMobile = document.querySelectorAll(`#${stockName}StockMobile span`);
+
+    stockMobile.forEach((el) => {
+      el.innerHTML = parseInt(el.innerHTML) - 1;
+    });
+
+    stockDesktop.forEach((el) => {
+      el.innerHTML = parseInt(el.innerHTML) - 1;
+
+      if (el.innerHTML === "0") {
+        currentReward.classList.add("inactive");
+        currentOption.classList.add("inactive");
+        rewardButton.innerHTML = "Out of Stock";
+      }
+    });
+  }
+}
+
+/* Validate Pledge */
+
+function validatePledge(button) {
+  const currentInputId = button.getAttribute("data-id");
+  const currentInput = document.getElementById(currentInputId);
+  const minPledge = parseInt(currentInput.getAttribute("min"));
+  const errorMsg = document.querySelector(`div[data-id="${currentInputId}"]`);
+  const stockName = button.getAttribute("data-name");
+  const currentReward = document.getElementById(stockName);
+  const rewardButton = document.querySelector(`[data-id="${stockName}Reward"]`);
+  const currentOption = document.querySelector(".option.active");
 
   if (!pledge || pledge < minPledge) {
     errorMsg.classList.add("active");
@@ -167,17 +174,64 @@ function confirmPledge(button) {
     return;
   }
 
-  selectionModal.classList.remove("active");
-  selectionModal.classList.add("inactive");
-  modalBackground.classList.add("inactive");
-  console.log(`This is currentOption2: ${currentName}`);
-  updateStock(currentName);
+  setTimeout(() => {
+    selectionModal.classList.remove("active");
+    selectionModal.classList.add("inactive");
+    modalBackground.classList.add("inactive");
 
-  successModal.classList.add("active");
-  successButton.addEventListener("click", () => {
-    successModal.classList.remove("active");
-    statsMeter.classList.remove("start");
-    statsSection.scrollIntoView({ block: "center" });
-    closeModalOverlay();
-  });
+    setTimeout(() => {
+      successModal.classList.add("active");
+      updateStock(stockName, currentReward, currentOption, rewardButton);
+    }, 500);
+  }, 500);
 }
+
+/* Update Stats */
+
+function updateStats(pledge) {
+  let amountStr = totalAmount.innerHTML.replace(",", "");
+  let amountNum = parseInt(amountStr);
+
+  let newTotal = (amountNum + pledge).toString();
+  let endChars = newTotal.slice(-3);
+  let startChars = newTotal.slice(0, -3);
+  totalAmount.innerHTML = startChars.concat(",", endChars);
+
+  let pledgesStr = totalPledges.innerHTML.replace(",", "");
+  let pledgesNum = parseInt(pledgesStr);
+
+  let newPledgesTotal = (pledgesNum + 1).toString();
+  let endPlgChars = newPledgesTotal.slice(-3);
+  let startPlgChars = newPledgesTotal.slice(0, -3);
+  totalPledges.innerHTML = startPlgChars.concat(",", endPlgChars);
+
+  let meterWidth = parseInt(newTotal) / 1000;
+  console.log(meterWidth);
+
+  setTimeout(() => {
+    statsText.classList.remove("inactive");
+    statsMeter.classList.add("start");
+
+    if (meterWidth < 100) {
+      statsMeter.style.width = `${meterWidth}%`;
+    } else {
+      statsMeter.style.width = "100%";
+    }
+  }, 500);
+}
+
+/* Confirm Pledge */
+
+successButton.addEventListener("click", () => {
+  successModal.classList.remove("active");
+  modalBackground.classList.remove("active");
+  statsText.classList.add("inactive");
+  statsMeter.style.width = 0;
+  statsMeter.classList.remove("start");
+
+  setTimeout(() => {
+    statsSection.scrollIntoView({ block: "center", behavior: "smooth" });
+    closeModalOverlay();
+    updateStats(pledge);
+  }, 500);
+});
