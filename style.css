@@ -42,7 +42,6 @@ button:active {
   transform: scale(0.95);
 }
 
-
 /* Header */
 header {
   height: 400px;
@@ -68,7 +67,6 @@ header {
   align-items: center;
 }
 
-
 /* Desktop Nav */
 .desktop-nav {
   margin: 0 25px;
@@ -88,109 +86,13 @@ header {
   color: hsl(176, 50%, 47%);
 }
 
+/* Mobile Nav */
 
-/* Mobile Nav*/
-.logo,
-.toggle,
-.mobile-nav a {
-  cursor: pointer;
-}
-
-.logo {
-  position: relative;
-  z-index: 3;
-}
-
-.toggle-buttons {
-  display: none;
-  position: relative;
-}
-
-.toggle {
-  position: absolute;
-  top: 2px;
-  right: 0;
-  pointer-events: none;
-  transform: scale(0);
-  transition: transform 0.5s ease;
-}
-
-.toggle.active {
-  position: relative;
-  pointer-events: all;
-  transform: scale(1);
-  z-index: 3;
-}
-
-.mobile-nav-background {
-  pointer-events: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-  background-color: hsla(0, 0%, 0%, 0.25);
-  z-index: 2;
-}
-
-.mobile-nav-background.active {
-  opacity: 1;
-  pointer-events: all;
-}
-
+.toggle-buttons,
+.mobile-nav-background,
 .mobile-nav {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 130px;
-  left: 0.5%;
-  right: 0.5%;
-  margin: auto;
-  width: 90%;
-  border-radius: 15px;
-  background-color: transparent;
-  max-height: 0;
-  transition: max-height 0.5s ease-in-out, background-color 0.25s ease-in-out;
-  box-shadow: 0 0 50px hsla(0, 0%, 0%, 0.5);
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 2;
+  display: none;
 }
-
-.mobile-nav a {
-  color: black;
-  text-decoration: none;
-  padding: 25px;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 1;
-  width: 100%;
-  background-color: white;
-  transition: background-color 0.25s ease, color 0.25s ease;
-  pointer-events: all;
-}
-
-.mobile-nav a:first-child {
-  border-bottom: 1px solid hsl(0, 0%, 48%, 0.15);
-}
-
-.mobile-nav a:last-child {
-  border-top: 1px solid hsl(0, 0%, 48%, 0.15);
-}
-
-.mobile-nav.active {
-  background-color: white;
-  max-height: 220px;
-}
-
-.mobile-nav a:active,
-.mobile-nav a:focus {
-  background-color: hsl(0, 0%, 48%, 0.25);
-  color: hsl(176, 50%, 47%);
-}
-
 
 /* Main */
 main {
@@ -207,7 +109,6 @@ main {
   width: 700px;
   margin: -100px auto 75px;
 }
-
 
 /* Hero Section */
 .block-hero {
@@ -318,7 +219,6 @@ main {
   color: hsl(176, 72%, 28%);
 }
 
-
 /* Stats Section */
 .stats,
 .about {
@@ -388,7 +288,6 @@ main {
   width: 63.75%;
   opacity: 1;
 }
-
 
 /* About Section */
 .about {
@@ -469,7 +368,6 @@ main {
 .select-reward p {
   color: hsl(0, 0%, 48%);
 }
-
 
 /* Selection Modal */
 .modal-background {
@@ -768,7 +666,6 @@ input[type="number"]::-webkit-outer-spin-button {
   height: 22px;
 }
 
-
 /* Success Modal */
 .success-modal {
   width: 500px;
@@ -817,9 +714,7 @@ input[type="number"]::-webkit-outer-spin-button {
   cursor: pointer;
 }
 
-
 @media (max-width: 767px) {
-
   /* Header */
   header {
     background-image: url("img/image-hero-mobile.jpg");
@@ -834,10 +729,107 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 
   /* Mobile Nav*/
-  .toggle-buttons {
-    display: block;
+  .logo,
+  .toggle,
+  .mobile-nav a {
+    cursor: pointer;
   }
 
+  .logo {
+    position: relative;
+    z-index: 3;
+  }
+
+  .toggle-buttons {
+    display: block;
+    position: relative;
+  }
+
+  .toggle {
+    position: absolute;
+    top: 2px;
+    right: 0;
+    pointer-events: none;
+    transform: scale(0);
+    transition: transform 0.5s ease;
+  }
+
+  .toggle.active {
+    position: relative;
+    pointer-events: all;
+    transform: scale(1);
+    z-index: 3;
+  }
+
+  .mobile-nav-background {
+    display: block;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    background-color: hsla(0, 0%, 0%, 0.25);
+    z-index: 2;
+  }
+
+  .mobile-nav-background.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 130px;
+    left: 0.5%;
+    right: 0.5%;
+    margin: auto;
+    width: 90%;
+    border-radius: 15px;
+    background-color: transparent;
+    max-height: 0;
+    transition: max-height 0.5s ease-in-out, background-color 0.25s ease-in-out;
+    box-shadow: 0 0 50px hsla(0, 0%, 0%, 0.5);
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .mobile-nav a {
+    color: black;
+    text-decoration: none;
+    padding: 25px;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1;
+    width: 100%;
+    background-color: white;
+    transition: background-color 0.25s ease, color 0.25s ease;
+    pointer-events: all;
+  }
+
+  .mobile-nav a:first-child {
+    border-bottom: 1px solid hsl(0, 0%, 48%, 0.15);
+  }
+
+  .mobile-nav a:last-child {
+    border-top: 1px solid hsl(0, 0%, 48%, 0.15);
+  }
+
+  .mobile-nav.active {
+    background-color: white;
+    max-height: 220px;
+  }
+
+  .mobile-nav.active a:active,
+  .mobile-nav.active a:focus {
+    background-color: hsl(0, 0%, 48%, 0.25);
+    color: hsl(176, 50%, 47%);
+  }
 
   /* Main */
   .container {
