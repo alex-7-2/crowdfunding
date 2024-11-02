@@ -87,7 +87,6 @@ header {
 }
 
 /* Mobile Nav */
-
 .toggle-buttons,
 .mobile-nav-background,
 .mobile-nav {
@@ -1049,7 +1048,7 @@ input[type="number"]::-webkit-outer-spin-button {
     text-align: center;
   }
 
-  /* Success modal */
+  /* Success Modal */
   .success-modal {
     width: 90%;
     height: fit-content;
