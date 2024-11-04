@@ -2,7 +2,7 @@
 
 This project was built using Frontend Mentor coding challenge assets, including JPEG design files for mobile & desktop layouts, style guide for fonts, colors, etc. and optimized image assets. The [challenge](https://www.frontendmentor.io/challenges/crowdfunding-product-page-7uvcZe7ZR) was to build a crowdfunding product page and match the original design as closely as possible.
 
-<img src="./img/desktop-preview.png" style="width: auto; height: 900px">
+![Desktop Preview](./img/desktop-preview.png)
 
 ## 📌 Pages
 
